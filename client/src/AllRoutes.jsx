@@ -8,6 +8,10 @@ import DisplayQuestion from "./pages/Home/Questions/DisplayQuestion";
 import Tags from "./pages/Home/Tags/Tags";
 import Users from "./pages/Home/Users/Users";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import Share from "./pages/Home/ShareContant/Share";
+import CardsPage from "./pages/CardsPage/CardsPage";
+import Subscription from "./pages/Home/Subscription/Subscription";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 const AllRoutes = () => {
   return (
@@ -21,6 +25,10 @@ const AllRoutes = () => {
       <Route path="/Tags" element={<Tags />} />
       <Route path="/Users" element={<Users />} />
       <Route path="/Users/:id" element={<UserProfile />} />
+      <Route path="/Share" element={<Share />} />
+      <Route path="/CardsPage" element={<CardsPage />} />
+      <Route path="/Subscription" element={<Subscription />} />
+      <Route path="/Sidebar" element={<Sidebar />} />
     </Routes>
   );
 };

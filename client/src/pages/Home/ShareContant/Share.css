@@ -1,0 +1,71 @@
+.share-h1 {
+  padding: 80px 0px 20px 0px;
+}
+
+.share {
+  min-height: 100vh;
+  background-color: #f1f2f3;
+}
+
+.share-container {
+  margin: auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.share-container form .form-container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
+    0 1px 4px rgb(0 0 0 / 10%);
+}
+
+.share-text {
+  padding: 10px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  font-family: "Roboto", sans-serif;
+  width: calc(100% - 20px);
+  resize: vertical;
+}
+
+.share-btn {
+  margin: 20px 0px;
+  padding: 10px 10px;
+  background-color: #009dff;
+  color: white;
+  border: solid 1px #009dff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.share-btn:hover {
+  background-color: #0086d8;
+}
+
+.file {
+  margin: 20px 0px;
+  padding: 10px 10px;
+  color: white;
+  border: solid 1px #009dff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.daytime .file {
+  color: black;
+}
+
+.nighttime .share {
+  background-color: #282c34;
+}
+
+.nighttime .share-container form .form-container {
+  background-color: #282c34;
+  border: solid 1px white;
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(193, 187, 187, 0.195),
+    0 20px 48px rgba(186, 180, 180, 0.299), 0 1px 4px rgba(198, 193, 193, 0.244);
+}

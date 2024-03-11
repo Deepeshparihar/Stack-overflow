@@ -27,7 +27,6 @@
 .right-sidebar-div-1 .right-sidebar-div-2 {
   display: flex;
   align-items: flex-start;
-
 }
 
 .right-sidebar-div-1 .right-sidebar-div-2 p {
@@ -66,8 +65,36 @@
   font-size: 13px;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 980px) {
   .right-sidebar {
     display: none;
   }
+}
+
+.nighttime .Widget h4 {
+  background-color: #282c34;
+  color: #ffffff;
+  border: 1px solid white;
+}
+
+.nighttime .right-sidebar-div-1 {
+  background-color: #282c34;
+  color: #ffffff;
+  border: 1px solid white;
+}
+
+.nighttime .widget-tags h4 {
+  background-color: #282c34;
+  color: #ffffff;
+  border: 1px solid white;
+}
+
+.nighttime .Widget {
+  box-shadow: 3px 3px 10px rgba(235, 232, 232, 0.201),
+    -3px -3px 10px rgba(235, 232, 232, 0.201);
+}
+
+.nighttime .widget-tags {
+  box-shadow: 3px 3px 10px rgba(235, 232, 232, 0.201),
+    -3px -3px 10px rgba(235, 232, 232, 0.201);
 }

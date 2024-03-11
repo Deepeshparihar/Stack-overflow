@@ -6,7 +6,11 @@ import "./Questions.css";
 import Avatar from "../../../components/Avatar/Avatar";
 import DisplayAnswer from "./DisplayAnswer";
 import { useDispatch, useSelector } from "react-redux";
-import { postAnswer, deleteQuestion, voteQuestion} from "../../../actions/question";
+import {
+  postAnswer,
+  deleteQuestion,
+  voteQuestion,
+} from "../../../actions/question";
 import moment from "moment";
 import copy from "copy-to-clipboard";
 
@@ -14,71 +18,8 @@ const QuestionsDetails = () => {
   const { id } = useParams();
   const questionsList = useSelector((state) => state.questionReducer);
 
-  // var questionsList = [
-  //   {
-  //     _id: "1",
-  //     upVotes: 3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a function",
-  //     questionBody: "It meant to be",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId: 1,
-  //     answer: [
-  //       {
-  //         answerBody: "Answer",
-  //         userAnswered: "Kumar",
-  //         answeredOn: "jan 2",
-  //         userId: 2,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "2",
-  //     upVotes: 3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a Array",
-  //     questionBody: "It meant ",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId: 1,
-  //     answer: [
-  //       {
-  //         answerBody: "Answer",
-  //         userAnswered: "Kumar",
-  //         answeredOn: "jan 2",
-  //         userId: 2,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "3",
-  //     upVotes: 3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a arrow function",
-  //     questionBody: "It meant to be",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId: 1,
-  //     answer: [
-  //       {
-  //         answerBody: "Answer",
-  //         userAnswered: "Kumar",
-  //         answeredOn: "jan 2",
-  //         userId: 2,
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const location = useLocation();
-  const url = "http://localhost:3000";
+  const url = "https://stackoverflow-bydeepesh.netlify.app";
 
   const handleShare = () => {
     copy(url + location.pathname);
@@ -86,8 +27,8 @@ const QuestionsDetails = () => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteQuestion(id, Navigate))
-  }
+    dispatch(deleteQuestion(id, Navigate));
+  };
 
   const [Answer, setAnswer] = useState("");
   const Navigate = useNavigate();
@@ -115,12 +56,12 @@ const QuestionsDetails = () => {
     }
   };
 
-  const handleUpVote = () =>{
-    dispatch(voteQuestion(id, 'upVote', User.result._id))
-  }
-  const handleDownVote = () =>{
-    dispatch(voteQuestion(id, 'downVote', User.result._id))
-  }
+  const handleUpVote = () => {
+    dispatch(voteQuestion(id, "upVote", User.result._id));
+  };
+  const handleDownVote = () => {
+    dispatch(voteQuestion(id, "downVote", User.result._id));
+  };
 
   return (
     <div className="question-details-page">
@@ -165,7 +106,9 @@ const QuestionsDetails = () => {
                             Share
                           </button>
                           {User?.result?._id === question?.userId && (
-                            <button type="button" onClick={handleDelete} >Delete</button>
+                            <button type="button" onClick={handleDelete}>
+                              Delete
+                            </button>
                           )}
                         </div>
                         <div>

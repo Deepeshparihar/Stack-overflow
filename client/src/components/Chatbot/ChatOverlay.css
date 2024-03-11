@@ -1,0 +1,89 @@
+/* ChatOverlay.css */
+.chat-overlay {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 40px;
+  width: 400px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border-right: #009dff00;
+}
+
+.chat-overlay.active {
+  display: flex;
+}
+
+.chat-overlay-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 5%), -3px -3px 10px rgb(0 0 0 / 5%);
+  /* Adjust the width as needed */
+}
+
+.nighttime.chat-overlay-content {
+  box-shadow: 3px 3px 10px rgba(235, 232, 232, 0.201),
+    -3px -3px 10px rgba(235, 232, 232, 0.201);
+}
+
+.close-btn-bot {
+  background-color: red;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  right: 0;
+}
+
+.back-btn {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  right: 0;
+  margin-left: 5px;
+}
+.otp-button {
+  padding: 7px;
+  margin-top: 5px;
+  background-color: #009dff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.chat-overlay-content form {
+  margin-top: 60px;
+  padding: 10px;
+}
+
+.chat-overlay-content form input {
+  font-family: sans-serif;
+  font-size: 14px;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+@media (max-width: 640px) {
+  .chat-overlay-content {
+    width: 300px;
+    height: 200px;
+    /* right: 0px; */
+    /* padding: 20px; */
+  }
+  .chat-overlay {
+    right: 0px;
+  }
+  .chat-overlay.active {
+    right: 0px;
+  }
+}

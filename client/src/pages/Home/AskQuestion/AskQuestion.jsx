@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AskQuestion.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { askQuestion } from "../../../actions/question";
+import {
+  askQuestion,
+  getQuestionCountToday,
+  getCurrentUserAmount,
+} from "../../../actions/question";
 
 const AskQuestion = () => {
   const [questionTitle, setQuestionTitle] = useState("");
@@ -11,11 +15,44 @@ const AskQuestion = () => {
 
   const dispatch = useDispatch();
   const User = useSelector((state) => state.currentUserReducer);
+  const userId = useSelector((state) => state.currentUserReducer.result._id);
   const navigate = useNavigate();
+
+  const questionCountToday = useSelector(
+    (state) => state.questionReducer.questionCountToday
+  );
+
+  const currentUserAmount = useSelector(
+    (state) => state.questionReducer.currentUserAmount
+  );
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(getCurrentUserAmount(userId));
+    }
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(getQuestionCountToday(userId));
+    }
+  }, [dispatch, userId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log({questionTitle, questionBody, questionTags })
+    if (
+      (currentUserAmount === 100 && questionCountToday >= 5) ||
+      (currentUserAmount === 1000 && questionCountToday >= Infinity) ||
+      (currentUserAmount !== 1000 &&
+        currentUserAmount !== 100 &&
+        questionCountToday >= 1)
+    ) {
+      alert(
+        "You have reached your daily question limit upgrade the plan to continue."
+      );
+      navigate("/Subscription");
+      return;
+    }
     dispatch(
       askQuestion(
         {
@@ -24,6 +61,8 @@ const AskQuestion = () => {
           questionTags,
           userPosted: User.result.name,
           userId: User?.result?._id,
+          currentUserAmount,
+          questionCountToday,
         },
         navigate
       )

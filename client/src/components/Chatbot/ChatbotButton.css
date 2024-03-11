@@ -1,0 +1,19 @@
+/* src/components/ChatbotButton.css */
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.button-image {
+  width: 70px; /* Adjust the size as needed */
+  height: 70px; /* Adjust the size as needed */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-image: url("../../assets/chatbot.png"); /* Update the path accordingly */
+}

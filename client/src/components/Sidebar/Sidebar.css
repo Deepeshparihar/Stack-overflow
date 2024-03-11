@@ -1,0 +1,104 @@
+.Sidebar {
+  width: 164px;
+  /* box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2); */
+  transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
+  transform: translateZ(0);
+  box-sizing: border-box;
+  font-size: 13px;
+  background-color: white;
+  position: fixed;
+  height: 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* Ensure the overlay is above everything else */
+  display: none; /* Initially hidden */
+}
+
+.sidebar-nav {
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  margin: 50px 0px;
+  padding: 20px 0px;
+  background-color: #ffffff;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 5%), -3px -3px 10px rgb(0 0 0 / 5%);
+}
+
+.side-nav-div1 {
+  padding: 10px 0px;
+  background-color: #ffffff;
+}
+
+.side-nav-div1 div {
+  padding-left: 10px;
+}
+
+.side-nav-links1 {
+  text-decoration: none;
+  color: #3a3a3a;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  transition: 0.2s;
+}
+
+.side-nav-links1:hover {
+  color: black;
+}
+
+.active {
+  font-weight: bolder;
+  color: black;
+  background-color: rgb(225, 225, 225);
+  border-right: solid 3px #ef8236;
+}
+
+/* .nighttime {
+  background-color: #282c34;
+  color: #ffffff;
+  border: solid 1px white;
+}
+
+.daytime {
+  background-color: #ffffff;
+  color: #282c34;
+} */
+
+/* .nighttime .side-nav-links1 {
+  color: #ffffff;
+}
+
+.nighttime .active {
+  color: black;
+} */
+
+.nighttime .side-nav-links1.active {
+  color: black;
+}
+
+.nighttime .sidebar-nav {
+  background-color: #282c34;
+  color: white;
+}
+
+.nighttime .side-nav-div1 {
+  background-color: #282c34;
+  color: white;
+}
+
+.nighttime .side-nav-links1 {
+  color: white;
+}
+
+@media (min-width: 640px) {
+  .Sidebar {
+    display: none; /* Hide the LeftSidebar component */
+  }
+}

@@ -1,7 +1,9 @@
 // Now using axious to handle request to send data to backend
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({
+  baseURL: "https://stack-ovelflow-clone.onrender.com",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
@@ -38,4 +40,20 @@ export const deleteAnswer = (id, answerId, noOfAnswers) =>
 
 export const fetchAllUsers = () => API.get("/user/getAllUsers");
 
-export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`, updateData)
+export const updateProfile = (id, updateData) =>
+  API.patch(`/user/update/${id}`, updateData);
+
+export const sendOTP = (email, generatedOTP) =>
+  API.post("/user/send", { email, generatedOTP });
+
+export const verifyOTP = ({ email, enteredOTP }) =>
+  API.post("/user/verify-otp", { email, enteredOTP });
+
+export const initiatePayment = ({ amount, userName, userId }) =>
+  API.post("/payment/createOrder", { amount, userName, userId });
+
+export const getQuestionCountToday = (userId) =>
+  API.get(`/questions/question-count-today/${userId}`);
+
+export const getCurrentUserAmount = (userId) =>
+  API.get(`/questions/current-user-amount/${userId}`);

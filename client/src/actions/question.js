@@ -1,13 +1,57 @@
 import * as api from "../api";
 
-export const askQuestion = (questionData, navigate) => async (dispatch) => {
+export const askQuestion =
+  (questionData, navigate) => async (dispatch, getState) => {
+    try {
+      const { currentUserAmount, questionCountToday } =
+        getState().questionReducer;
+      const dailyQuestionLimit = calculateDailyQuestionLimit(currentUserAmount);
+      if (questionCountToday >= dailyQuestionLimit) {
+        alert("You have reached your daily question limit.");
+        navigate("/Subscription");
+        return;
+      }
+
+      const { data } = await api.postQuestion(questionData);
+      dispatch({ type: "POST_QUESTION", payload: data });
+      dispatch(fetchAllQuestions());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const calculateDailyQuestionLimit = (currentUserAmount) => {
+  if (currentUserAmount === 100) {
+    return 5;
+  } else if (currentUserAmount === 1000) {
+    return Infinity;
+  } else {
+    return 1;
+  }
+};
+
+export const getQuestionCountToday = (userId) => async (dispatch) => {
   try {
-    const { data } = await api.postQuestion(questionData);
-    dispatch({ type: "POST_QUESTION", payload: data });
-    dispatch(fetchAllQuestions());
-    navigate("/");
+    const res = await api.getQuestionCountToday(userId);
+    dispatch({
+      type: "GET_QUESTION_COUNT_TODAY",
+      payload: res.data.count,
+    });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+};
+
+export const getCurrentUserAmount = (userId) => async (dispatch) => {
+  try {
+    const response = await api.getCurrentUserAmount(userId);
+    dispatch({
+      type: "GET_CURRENT_USER_AMOUNT",
+      payload: response.data.amount,
+    });
+  } catch (error) {
+    console.error("Error fetching current user amount:", error);
   }
 };
 
@@ -32,12 +76,12 @@ export const deleteQuestion = (id, navigate) => async (dispatch) => {
 
 export const voteQuestion = (id, value, userId) => async (dispatch) => {
   try {
-    await api.voteQuestion(id, value, userId)
-    dispatch(fetchAllQuestions())
+    await api.voteQuestion(id, value, userId);
+    dispatch(fetchAllQuestions());
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const postAnswer = (answerData) => async (dispatch) => {
   try {
@@ -47,7 +91,7 @@ export const postAnswer = (answerData) => async (dispatch) => {
       noOfAnswers,
       answerBody,
       userAnswered,
-      userId,
+      userId
     );
     dispatch({ type: "POST_ANSWER", payload: data });
     dispatch(fetchAllQuestions());

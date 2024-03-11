@@ -5,72 +5,12 @@ import Questions from "./Questions";
 import "./HomeMainbar.css";
 import QuestionList from "./QuestionList";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 
 const HomeMainbar = () => {
-  
-  const user = 1;
+  const user = useSelector((state) => state.currentUserReducer);
 
-  const questionsList = useSelector(state => state.questionReducer)
-  
-  // console.log(questionsList)
-
-  // var questionsList = [
-  //   {
-  //     _id: 1,
-  //     upVotes:3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a function",
-  //     questionBody: "It meant to be",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId:1,
-  //     answer:[{
-  //       answerBody:"Answer",
-  //       userAnswered: "Kumar",
-  //       answeredOn: "jan 2",
-  //       userId: 2,
-  //     }]
-  //   },
-  //   {
-  //     _id: 2,
-  //     upVotes:3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a Array",
-  //     questionBody: "It meant to be",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId:1,
-  //     answer:[{
-  //       answerBody:"Answer",
-  //       userAnswered: "Kumar",
-  //       answeredOn: "jan 2",
-  //       userId: 2,
-  //     }]
-  //   },
-  //   {
-  //     _id: 3,
-  //     upVotes:3,
-  //     downVotes: 2,
-  //     noOfAnswers: 2,
-  //     questionTitle: "What is a arrow function",
-  //     questionBody: "It meant to be",
-  //     questionTags: ["java", "node js", "react js", "mongodb"],
-  //     userPosted: "Deepesh",
-  //     askedOn: "jan 1",
-  //     userId:1,
-  //     answer:[{
-  //       answerBody:"Answer",
-  //       userAnswered: "Kumar",
-  //       answeredOn: "jan 2",
-  //       userId: 2,
-  //     }]
-  //   },
-  // ];
+  const questionsList = useSelector((state) => state.questionReducer);
 
   const location = useLocation();
   const navigate = useNavigate();

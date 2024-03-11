@@ -14,6 +14,12 @@ const Questions = ({ question }) => {
         <p>Answers</p>
       </div>
       <div className="display-question-details">
+        <div className="display-votes">
+          <p>{question.upVote.length - question.downVote.length}</p>
+          <p>Votes</p>
+          <p>{question.noOfAnswers}</p>
+          <p>Answers</p>
+        </div>
         <Link to={`/Questions/${question._id}`} className="question-title-link">
           {question.questionTitle}
         </Link>
