@@ -44,6 +44,7 @@ const Share = () => {
       if (
         fileType.startsWith("image/") ||
         fileType.startsWith("video/") ||
+        fileType.startsWith("audio/") ||
         fileType === "application/pdf"
       ) {
         setFile(selectedFile);
@@ -82,7 +83,10 @@ const Share = () => {
           formData.append("file", file);
         }
 
-        await axios.post("http://localhost:5000/api/upload", formData);
+        await axios.post(
+          "https://stack-ovelflow-clone.onrender.com/api/upload",
+          formData
+        );
 
         navigate("/CardsPage");
       } catch (error) {

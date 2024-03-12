@@ -7,11 +7,15 @@ import "./Auth.css";
 import AboutAuth from "./AboutAuth";
 import { signup, login } from "../../../actions/auth";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 const Auth = () => {
   const [isSignup, setSignup] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,6 +39,10 @@ const Auth = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <section className="auth-section">
       {isSignup && <AboutAuth />}
@@ -48,6 +56,7 @@ const Auth = () => {
               <h4>Display Name</h4>
               <input
                 type="text"
+                placeholder="Full name"
                 id="name"
                 name="name"
                 onChange={(e) => {
@@ -62,6 +71,7 @@ const Auth = () => {
             <input
               type="email"
               name="email"
+              placeholder="Email address"
               id="email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -77,14 +87,31 @@ const Auth = () => {
                 </p>
               )}
             </div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+            <div style={{ position: "relative" }}>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <span
+                className="eye-icon"
+                onClick={togglePasswordVisibility}
+                onTouchStart={togglePasswordVisibility} // Add touch event for mobile devices
+              >
+                {
+                  showPassword ? (
+                    <FontAwesomeIcon icon={faEyeSlash} /> // Crossed eye when password is visible
+                  ) : (
+                    <FontAwesomeIcon icon={faEye} />
+                  ) // Normal eye when password is hidden
+                }
+              </span>
+            </div>
             {isSignup && (
               <p style={{ color: "#666767", fontSize: "13px" }}>
                 Password must contain at least eight <br /> character, including

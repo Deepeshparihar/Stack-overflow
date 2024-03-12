@@ -18,7 +18,7 @@ export const initiatePayment =
           name: "StackOverflow Membership",
           description: "Subscription Payment",
           order_id: orderId,
-          callback_url: `http://localhost:5000/payment/paymentverification?amount=${amount}&userName=${userName}&userId=${userId}`,
+          callback_url: `https://stack-ovelflow-clone.onrender.com/payment/paymentverification?amount=${amount}&userName=${userName}&userId=${userId}`,
 
           prefill: {
             name: userName,

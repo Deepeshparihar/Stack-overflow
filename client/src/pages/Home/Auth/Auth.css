@@ -36,35 +36,35 @@
     0 1px 4px rgb(0 0 0 / 10%);
 }
 
-.auth-container-2 form label input{
-    padding: 10px;
-    width: calc(100% - 30px);
-    border: solid 1px #0000003e;
-    font-size: 13px;
+.auth-container-2 form label input {
+  padding: 10px;
+  width: calc(100% - 30px);
+  border: solid 1px #0000003e;
+  font-size: 13px;
 }
 
 .auth-container-2 form label:nth-child(1) h4,
 .auth-container-2 form label:nth-child(2) h4,
-.auth-container-2 form label:nth-child(3) h4{
-    margin-bottom: 5x;
-    margin-top: 10px;
+.auth-container-2 form label:nth-child(3) h4 {
+  margin-bottom: 5x;
+  margin-top: 10px;
 }
 
 .auth-container-2 form label:nth-child(4) {
-    display: flex;
+  display: flex;
 }
 
-.auth-container-2 form label:nth-child(4) input{
-    width: 15%;
-    margin: 13px 0px;
+.auth-container-2 form label:nth-child(4) input {
+  width: 15%;
+  margin: 13px 0px;
 }
-.auth-container-2 form label:nth-child(4) input.defaultCheckbox{
+.auth-container-2 form label:nth-child(4) input.defaultCheckbox {
   width: 15px;
   height: 15px;
   margin: 15px 5px 4px 4px;
 }
 
-.auth-btn{
+.auth-btn {
   margin-top: 10px;
   padding: 10px 5px;
   background-color: #009dff;
@@ -75,14 +75,13 @@
   transition: 0.2s;
   font-size: 13px;
   font-weight: 500;
-
 }
 
-.auth-btn:hover{
+.auth-btn:hover {
   background-color: #018ce3;
 }
 
-.handle-switch-btn{
+.handle-switch-btn {
   background-color: transparent;
   color: #007ac6;
   border: none;
@@ -90,13 +89,27 @@
   cursor: pointer;
 }
 
-.nighttime .auth-container-2 form{
+.nighttime .auth-container-2 form {
   background-color: #282c34;
   box-shadow: 3px 3px 10px rgba(235, 232, 232, 0.201),
-  -3px -3px 10px rgba(235, 232, 232, 0.201);
+    -3px -3px 10px rgba(235, 232, 232, 0.201);
 }
 
 .nighttime .auth-section {
   background-color: #4a4e56e4;
+}
+.eye-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: black;
   
+}
+
+.hide-password #password {
+  /* Adjust styles to hide password */
+  /* For example, you can set the color of the password text to be transparent */
+  color: transparent;
 }

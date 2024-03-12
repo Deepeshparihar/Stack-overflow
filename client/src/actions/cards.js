@@ -7,7 +7,9 @@ export const fetchCardsLoading = () => ({
 export const fetchCards = () => async (dispatch) => {
   try {
     dispatch(fetchCardsLoading());
-    const { data } = await axios.get("http://localhost:5000/api/uploads");
+    const { data } = await axios.get(
+      "https://stack-ovelflow-clone.onrender.com/api/uploads"
+    );
     dispatch({ type: "FETCH_CARDS_SUCCESS", payload: data });
   } catch (error) {
     console.log(error);
