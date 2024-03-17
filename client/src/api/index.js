@@ -49,8 +49,8 @@ export const sendOTP = (email, generatedOTP) =>
 export const verifyOTP = ({ email, enteredOTP }) =>
   API.post("/user/verify-otp", { email, enteredOTP });
 
-export const initiatePayment = ({ amount, userName, userId }) =>
-  API.post("/payment/createOrder", { amount, userName, userId });
+export const initiatePayment = ({ adjustedAmount, userName, userId }) =>
+  API.post("/payment/createOrder", { adjustedAmount, userName, userId });
 
 export const getQuestionCountToday = (userId) =>
   API.get(`/questions/question-count-today/${userId}`);

@@ -38,6 +38,14 @@ const Subscription = () => {
   const handlePayment = (amount) => {
     const userName = User.result.name;
     const userId = User.result._id;
+
+    let adjustedAmount = amount; // Initialize adjustedAmount with the original amount
+
+    // Check if the user is currently subscribed to the Silver Plan (100)
+    if (currentUserAmount === 100) {
+      // Apply the discount if the current plan is Silver Plan
+      adjustedAmount -= 100; // Deduct 100 from the original amount
+    }
     if (currentUserAmount === 100 && amount <= 100) {
       alert("You already have the Silver Plan.");
     } else if (currentUserAmount === 1000 && amount <= 1000) {
@@ -45,7 +53,7 @@ const Subscription = () => {
     } else if (currentUserAmount === null && amount === 0) {
       alert("You already in Free Plan.");
     } else {
-      dispatch(initiatePayment(amount, userName, userId));
+      dispatch(initiatePayment(adjustedAmount, userName, userId));
     }
   };
 
@@ -110,7 +118,17 @@ const Subscription = () => {
           <div className="subscription-card">
             <h2>Gold Plan</h2>
             <p>Can post unlimited questions</p>
-            <h1>₹1000/month</h1>
+            <p>
+              {currentUserAmount === 100 ? (
+                <>
+                  <s>₹1000</s> <span className="discount-text">SAVE ₹100</span>{" "}
+                  {/* Display discount */}
+                  <h1>₹900/month</h1>
+                </>
+              ) : (
+                <h1>₹1000/month</h1>
+              )}
+            </p>
             <button
               className="buy-btn"
               onClick={() => {

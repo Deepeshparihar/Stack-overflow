@@ -1,10 +1,10 @@
 import * as api from "../api";
 
 export const initiatePayment =
-  (amount, userName, userId) => async (dispatch) => {
+  (adjustedAmount, userName, userId) => async (dispatch) => {
     try {
       const response = await api.initiatePayment({
-        amount,
+        adjustedAmount,
         userName,
         userId,
       });
@@ -13,12 +13,12 @@ export const initiatePayment =
       if (orderId) {
         const options = {
           key: "rzp_test_vP9XgMpTDWdTS4",
-          amount: amount * 100,
+          amount: adjustedAmount * 100,
           currency: "INR",
           name: "StackOverflow Membership",
           description: "Subscription Payment",
           order_id: orderId,
-          callback_url: `https://stack-ovelflow-clone.onrender.com/payment/paymentverification?amount=${amount}&userName=${userName}&userId=${userId}`,
+          callback_url: `https://stack-ovelflow-clone.onrender.com/payment/paymentverification?amount=${adjustedAmount}&userName=${userName}&userId=${userId}`,
 
           prefill: {
             name: userName,

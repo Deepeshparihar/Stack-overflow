@@ -37,7 +37,7 @@ function App() {
           return currentTime >= 6 && currentTime < 18;
         };
 
-        const isBadWeather = data.weather[0].main === "Rain";
+        const isBadWeather = data.weather[0].main === "Rain" || "Cloudy";
         setIsDaytime(isBadWeather ? false : isDaytimeNow());
       } catch (error) {
         console.error("Error fetching weather:", error);

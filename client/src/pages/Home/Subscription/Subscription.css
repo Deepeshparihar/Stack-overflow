@@ -80,6 +80,14 @@
   color: #666;
 }
 
+.discount-text {
+  color: red; /* Example color */
+  font-weight: bold;
+  background-color: #eab5b5cd;
+  padding: 7px;
+  border-radius: 20px;
+}
+
 @media (max-width: 640px) {
   .subscription-container {
     padding: 0px;

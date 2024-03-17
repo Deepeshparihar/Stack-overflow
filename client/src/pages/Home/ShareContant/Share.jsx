@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "./Share.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import abusiveWords from "./FilterContent";
 
 const Share = () => {
   const [content, setContent] = useState("");
@@ -18,21 +18,6 @@ const Share = () => {
   pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
   const handleContentChange = (e) => {
     setContent(e.target.value);
-  };
-
-  const handleCheckAbusiveWords = (content) => {
-    const lowercaseContent = content.toLowerCase();
-
-    const containsAbusiveWord = abusiveWords.find((word) =>
-      lowercaseContent.includes(word)
-    );
-
-    if (containsAbusiveWord) {
-      alert(`Remove abusive words "${containsAbusiveWord}"  to proceed.`);
-      return false;
-    }
-
-    return true;
   };
 
   const handleFileChange = (e) => {
@@ -69,35 +54,48 @@ const Share = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("text", content);
+    formData.append("userPosted", User.result.name);
+    formData.append("userId", User?.result?._id);
 
-    const isValid = handleCheckAbusiveWords(content);
-
-    if (isValid) {
-      try {
-        const formData = new FormData();
-        formData.append("text", content);
-        formData.append("userPosted", User.result.name);
-        formData.append("userId", User?.result?._id);
-
-        if (file) {
-          formData.append("file", file);
-        }
-
-        await axios.post(
-          "https://stack-ovelflow-clone.onrender.com/api/upload",
-          formData
-        );
-
-        navigate("/CardsPage");
-      } catch (error) {
-        console.log(error);
-      }
-
-      setContent("");
-      setFile(null);
-      setFileType("");
-      setPreviewURL("");
+    if (file) {
+      formData.append("file", file);
     }
+
+    try {
+      // Check toxicity of the content using Perspective API
+      const response = await axios.post(
+        "https://stack-ovelflow-clone.onrender.com/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      navigate("/CardsPage");
+    } catch (error) {
+      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        alert(error.response.data.message); // Display the error message in an alert
+      } else {
+        // If the error object does not contain a message in the response, display a generic error message
+        alert(
+          "An error occurred while processing your request. Please try again later."
+        );
+      }
+    }
+
+    setContent("");
+    setFile(null);
+    setFileType("");
+    setPreviewURL("");
   };
 
   const handleEnter = (e) => {
